@@ -5,8 +5,8 @@ import java.lang.ref.*;
 
 public class PrintServiceProvider
 {
-    static HashMap<KeyPair, String> m_services = new HashMap<> ();
-    static HashMap<KeyPair, SoftReference<IPrintable>> m_cached = new HashMap<> ();
+    final static HashMap<KeyPair, String> m_services = new HashMap<> ();
+    final static HashMap<KeyPair, SoftReference<IPrintable>> m_cached = new HashMap<> ();
 
     public static boolean register ( KeyPair key, String clsname )
     {
@@ -16,7 +16,7 @@ public class PrintServiceProvider
         return true;
     }
 
-    public static IPrintable getService (KeyPair key )
+    public static IPrintable getService ( KeyPair key )
     {
         if ( m_cached.containsKey ( key ) && m_cached.get ( key ).get () != null )
             return m_cached.get ( key ).get ();

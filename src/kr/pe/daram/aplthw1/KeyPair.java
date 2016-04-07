@@ -7,6 +7,12 @@ class KeyPair
     public String getNickname () { return m_nickname; }
     public String getAuthor () { return m_author; }
 
+    public KeyPair ( String nickname, String author )
+    {
+        m_nickname = nickname;
+        m_author = author;
+    }
+
     @Override
     public boolean equals ( Object other )
     {
