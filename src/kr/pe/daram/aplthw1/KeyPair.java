@@ -1,3 +1,5 @@
+package kr.pe.daram.aplthw1;
+
 class KeyPair
 {
     String m_nickname, m_author;

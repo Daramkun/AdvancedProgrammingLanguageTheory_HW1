@@ -1,3 +1,5 @@
+package kr.pe.daram.aplthw1;
+
 import java.util.*;
 import java.lang.ref.*;
 
@@ -6,7 +8,7 @@ public class PrintServiceProvider
     static HashMap<KeyPair, String> m_services = new HashMap<> ();
     static HashMap<KeyPair, SoftReference<IPrintable>> m_cached = new HashMap<> ();
 
-    public static boolean registration ( KeyPair key, String clsname )
+    public static boolean register ( KeyPair key, String clsname )
     {
         if ( m_services.containsKey ( key ) )
             return false;
