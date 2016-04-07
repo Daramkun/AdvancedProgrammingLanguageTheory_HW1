@@ -6,20 +6,21 @@ import java.lang.ref.*;
 public class PrintServiceProvider
 {
     final static HashMap<KeyPair, String> m_services = new HashMap<> ();
-    final static HashMap<KeyPair, SoftReference<IPrintable>> m_cached = new HashMap<> ();
+    //final static HashMap<KeyPair, SoftReference<IPrintable>> m_cached = new HashMap<> ();
+    final static Map<KeyPair, IPrintable> m_cached = new WeakHashMap<> ();
 
-    public static boolean register ( KeyPair key, String clsname )
+    public static boolean register ( KeyPair key, String classname )
     {
         if ( m_services.containsKey ( key ) )
             return false;
-        m_services.put ( key, clsname );
+        m_services.put ( key, classname );
         return true;
     }
 
     public static IPrintable getService ( KeyPair key )
     {
-        if ( m_cached.containsKey ( key ) && m_cached.get ( key ).get () != null )
-            return m_cached.get ( key ).get ();
+        if ( m_cached.containsKey ( key ) )
+            return m_cached.get ( key );
 
         if ( !m_services.containsKey ( key ) )
             return null;
@@ -27,10 +28,10 @@ public class PrintServiceProvider
         try
         {
             Class cls = Class.forName ( m_services.get ( key ) );
-            IPrintable instance = ( IPrintable ) cls.newInstance ();
+            IPrintable instance = IPrintable.class.cast ( cls.newInstance () );
             if ( m_cached.containsKey ( key ) )
-                m_cached.replace( key, new SoftReference ( instance ) );
-            else m_cached.put ( key, new SoftReference ( instance ) );
+                m_cached.replace( key, instance );
+            else m_cached.put ( key, instance );
 
             return instance;
         }
