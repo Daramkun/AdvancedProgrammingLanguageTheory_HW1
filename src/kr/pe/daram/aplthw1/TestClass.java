@@ -13,7 +13,9 @@ public class TestClass
         PrintServiceProvider.register ( new KeyPair ( "It's me,", "Mario!" ), "kr.pe.daram.aplthw1.TestPrintable1" );
         PrintServiceProvider.register ( new KeyPair ( "Requiescat", "in Pace." ), "kr.pe.daram.aplthw1.TestPrintable2" );
         PrintServiceProvider.register ( new KeyPair ( "Assassino!", "Ezio Auditore da Firenze" ), "kr.pe.daram.aplthw1.TestPrintable2" );
-        PrintServiceProvider.register ( new KeyPair ( "", "" ), "kr.pe.daram.aplthw1.TestPrintable3" );
+        PrintServiceProvider.register ( new KeyPair ( "Cake is a lie.", "GLaDOS" ), "kr.pe.daram.aplthw1.TestPrintable3" );
+        //IPrintable tempPrintable = ()-> { System.out.println ( "SUPERHOT" ); };
+        //PrintServiceProvider.register ( new KeyPair ( "SUPER", "HOT" ), tempPrintable.getClass ().getCanonicalName () );
 
         IPrintable printable1 = PrintServiceProvider.getService ( new KeyPair ( "It's me,", "Mario!" ) );
         printable1.printName ();
@@ -36,6 +38,12 @@ public class TestClass
         IPrintable printable5 = PrintServiceProvider.getService ( new KeyPair ( "It's me,", "Mario!" ) );
         printable5.printName ();
         System.out.println ( printable5 );
+
+        IPrintable printable6 = PrintServiceProvider.getService ( new KeyPair ( "Cake is a lie.", "GLaDOS" ) );
+        printable6.printName ();
+
+        //IPrintable printable7 = PrintServiceProvider.getService ( new KeyPair ( "SUPER", "HOT" ) );
+        //printable7.printName ();
     }
 
     private static void generateOutOfMemory ()
@@ -70,6 +78,6 @@ class TestPrintable3 implements IPrintable
 {
     @Override
     public void printName() {
-        System.out.println ( "Requiescat in Pace." );
+        System.out.println ( "You monster." );
     }
 }
