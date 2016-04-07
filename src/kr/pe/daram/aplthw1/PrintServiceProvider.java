@@ -29,9 +29,10 @@ public class PrintServiceProvider
         {
             Class cls = Class.forName ( m_services.get ( key ) );
             IPrintable instance = IPrintable.class.cast ( cls.newInstance () );
-            if ( m_cached.containsKey ( key ) )
-                m_cached.replace( key, instance );
-            else m_cached.put ( key, instance );
+            //if ( m_cached.containsKey ( key ) )
+            //    m_cached.replace( key, instance );
+            //else
+                m_cached.put ( key, instance );
 
             return instance;
         }
